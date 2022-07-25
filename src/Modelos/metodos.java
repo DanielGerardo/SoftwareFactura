@@ -32,9 +32,10 @@ public interface metodos {
                         objServicio[3] = "";
                         objServicio[4] = ""; 
                         objServicio[5] = "";
+                        System.out.println(objServicio);
                         model.addRow(objServicio);
                         tabla.setModel(model); 
-                                                                                                                                   
+                                                                                                                                 
                        break;
              case 2: 
                      if(descuento<=precio){

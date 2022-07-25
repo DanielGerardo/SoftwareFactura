@@ -5,16 +5,19 @@
  */
 package CapaFiltros;
 
+import CapaDatos.CD_Sucursal;
+
 /**
  *
  * @author danyj
  */
 public class CF_Sucursal {
+    private CD_Sucursal objCapaDato = new CD_Sucursal();
+        
+    public CF_Sucursal(){}
     
-    /* private CD_Sucursal objCapaDato = new CD_Sucursal();
-
-        public List<Categoria> Listar()
+        public Object[] Listar()
         {
             return objCapaDato.Listar();
-        }*/
+        }
 }

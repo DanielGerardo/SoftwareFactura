@@ -8,7 +8,12 @@ package Vistas;
 import Modelos.metodos;
 import java.awt.event.ItemEvent;
 import javax.swing.table.DefaultTableModel;
-
+import CapaDatos.CD_Sucursal;
+import CapaFiltros.CF_Sucursal;
+import Entidad.EN_Sucursal;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 /**
  *
  * @author danyj
@@ -24,7 +29,9 @@ public class NuevaFactura extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         lblDescuento.setVisible(false);
         txtDescuento.setVisible(false);
-        limpiarCampos();
+        limpiarCampos(); 
+        
+        
     }
 
     /**

@@ -6,6 +6,7 @@
 package Entidad;
 
 import java.awt.Image;
+import javax.swing.Renderer;
 
 /**
  *
@@ -20,6 +21,7 @@ public class EN_Sucursal {
     byte[] Logo;
     String FechaRegistro;
 
+    public EN_Sucursal(){}
     public EN_Sucursal(int IdSucursal, String RazonSocial, String RFC, String Domicilio, int CP, byte[] Logo, String FechaRegistro) {
         this.IdSucursal = IdSucursal;
         this.RazonSocial = RazonSocial;
@@ -30,9 +32,7 @@ public class EN_Sucursal {
         this.FechaRegistro = FechaRegistro;
     }
 
-    public EN_Sucursal() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+  
 
     public int getIdSucursal() {
         return IdSucursal;
@@ -90,4 +90,37 @@ public class EN_Sucursal {
         this.FechaRegistro = FechaRegistro;
     }
 
+  /*public List<EN_Sucursal> Listar(){
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Conexion con = new Conexion();
+        Connection acceso;
+        
+        List<EN_Sucursal> lista = new ArrayList<EN_Sucursal>();
+        EN_Sucursal Sucursal = null;
+        try {
+            acceso = con.conectar();
+            String sql = "SELECT * FROM Sucursal";
+            ps = acceso.prepareStatement(sql);
+            rs = ps.executeQuery();           
+            while (rs.next()) {               
+                Sucursal = new EN_Sucursal();
+                Sucursal.setIdSucursal(rs.getInt("IdSucursal"));
+                Sucursal.setRazonSocial(rs.getString("RazonSocial"));
+                Sucursal.setRFC(rs.getString("RFC"));
+                Sucursal.setDomicilio(rs.getString("Domicilio"));
+                Sucursal.setCP(rs.getInt("CP"));
+                Sucursal.setLogo(rs.getBytes("Logo"));
+                Sucursal.setFechaRegistro(rs.getString("FechaRegistro"));
+               
+                lista.add(Sucursal);
+            }
+            rs.close();
+           
+        } catch (SQLException e) {   
+            System.out.println(e);
+            lista = new ArrayList<EN_Sucursal>();
+        }       
+        return lista; 
+}  */    
 }
