@@ -15,25 +15,27 @@ import javax.swing.Renderer;
 public class EN_Sucursal {
     int IdSucursal;
     String RazonSocial;
+    String Tel;
+    String Correo;
     String RFC;
     String Domicilio;
-    int CP;
+    String CP;
     byte[] Logo;
     String FechaRegistro;
 
     public EN_Sucursal(){}
-    public EN_Sucursal(int IdSucursal, String RazonSocial, String RFC, String Domicilio, int CP, byte[] Logo, String FechaRegistro) {
-        this.IdSucursal = IdSucursal;
+
+    public EN_Sucursal(String RazonSocial, String Tel, String Correo, String RFC, String Domicilio, String CP, byte[] Logo, String FechaRegistro) {
         this.RazonSocial = RazonSocial;
+        this.Tel = Tel;
+        this.Correo = Correo;
         this.RFC = RFC;
         this.Domicilio = Domicilio;
         this.CP = CP;
         this.Logo = Logo;
         this.FechaRegistro = FechaRegistro;
     }
-
-  
-
+    
     public int getIdSucursal() {
         return IdSucursal;
     }
@@ -48,6 +50,22 @@ public class EN_Sucursal {
 
     public void setRazonSocial(String RazonSocial) {
         this.RazonSocial = RazonSocial;
+    }
+
+    public String getTel() {
+        return Tel;
+    }
+
+    public void setTel(String Tel) {
+        this.Tel = Tel;
+    }
+
+    public String getCorreo() {
+        return Correo;
+    }
+
+    public void setCorreo(String Correo) {
+        this.Correo = Correo;
     }
 
     public String getRFC() {
@@ -66,11 +84,11 @@ public class EN_Sucursal {
         this.Domicilio = Domicilio;
     }
 
-    public int getCP() {
+    public String getCP() {
         return CP;
     }
 
-    public void setCP(int CP) {
+    public void setCP(String CP) {
         this.CP = CP;
     }
 
@@ -89,8 +107,7 @@ public class EN_Sucursal {
     public void setFechaRegistro(String FechaRegistro) {
         this.FechaRegistro = FechaRegistro;
     }
-
-  /*public List<EN_Sucursal> Listar(){
+      /*public List<EN_Sucursal> Listar(){
         PreparedStatement ps = null;
         ResultSet rs = null;
         Conexion con = new Conexion();
@@ -123,4 +140,7 @@ public class EN_Sucursal {
         }       
         return lista; 
 }  */    
+
+    
+
 }

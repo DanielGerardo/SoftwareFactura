@@ -3,14 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/danyj/OneDrive/Documentos/NetBeansProjects/SoftwareFactura/src/Entidad/EN_Empleado.java</file>
             <file>file:/C:/Users/danyj/OneDrive/Documentos/NetBeansProjects/SoftwareFactura/src/Entidad/EN_Sucursal.java</file>
             <file>file:/C:/Users/danyj/OneDrive/Documentos/NetBeansProjects/SoftwareFactura/src/Modelos/metodos.java</file>
-            <file>file:/C:/Users/danyj/OneDrive/Documentos/NetBeansProjects/SoftwareFactura/src/Vistas/NuevaFactura.java</file>
             <file>file:/C:/Users/danyj/OneDrive/Documentos/NetBeansProjects/SoftwareFactura/src/Modelos/Conexion.java</file>
+            <file>file:/C:/Users/danyj/OneDrive/Documentos/NetBeansProjects/SoftwareFactura/src/Vistas/NuevaSucursal.java</file>
             <file>file:/C:/Users/danyj/OneDrive/Documentos/NetBeansProjects/SoftwareFactura/src/Entidad/EN_FormasPago.java</file>
             <file>file:/C:/Users/danyj/OneDrive/Documentos/NetBeansProjects/SoftwareFactura/src/CapaDatos/CD_Sucursal.java</file>
             <file>file:/C:/Users/danyj/OneDrive/Documentos/NetBeansProjects/SoftwareFactura/src/Entidad/EN_Departamento.java</file>
             <file>file:/C:/Users/danyj/OneDrive/Documentos/NetBeansProjects/SoftwareFactura/src/CapaFiltros/CF_Sucursal.java</file>
+            <file>file:/C:/Users/danyj/OneDrive/Documentos/NetBeansProjects/SoftwareFactura/src/Vistas/NuevaFactura.java</file>
+            <file>file:/C:/Users/danyj/OneDrive/Documentos/NetBeansProjects/SoftwareFactura/src/Vistas/Menu.java</file>
+            <file>file:/C:/Users/danyj/OneDrive/Documentos/NetBeansProjects/SoftwareFactura/src/Entidad/EN_Carrito.java</file>
+            <file>file:/C:/Users/danyj/OneDrive/Documentos/NetBeansProjects/SoftwareFactura/src/Modelos/CM_Recursos.java</file>
         </group>
     </open-files>
 </project-private>
