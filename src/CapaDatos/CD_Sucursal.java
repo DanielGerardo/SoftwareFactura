@@ -15,6 +15,14 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import Vistas.NuevaSucursal;
 import static Vistas.NuevaSucursal.tablaSucursal;
+import static Vistas.NuevaSucursal.imgLogo;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -42,7 +50,7 @@ public class CD_Sucursal {
             String sql = "SELECT * FROM Sucursal";
             ps = acceso.prepareStatement(sql);
             rs = ps.executeQuery();
-             String[] titulos = {"ID","RazonSocial","RFC","Telefono","Correo","Domicilio","CP","FechaRegistro"};
+             String[] titulos = {"ID","RazonSocial","Telefono","Correo","RFC","Domicilio","CP","FechaRegistro"};
             model = new DefaultTableModel(null, titulos);        
        
             while (rs.next()) {
@@ -96,7 +104,7 @@ public class CD_Sucursal {
     public void Actualizar(EN_Sucursal sucursal) {
      
        String sql = "UPDATE Sucursal SET RazonSocial=?,Telefono=?,Correo=?, RFC=?, Domicilio=?, CP=?, Logo=?, FechaRegistro=date('now')"
-               + " WHERE Id_Sucursal=?";
+               + " WHERE IdSucursal=?";
         try {
             acceso = con.conectar();
             ps = acceso.prepareStatement(sql);
@@ -108,7 +116,8 @@ public class CD_Sucursal {
             ps.setString(4, sucursal.getRFC());
             ps.setString(5, sucursal.getDomicilio());
             ps.setString(6, sucursal.getCP());
-            ps.setBytes(7, sucursal.getLogo()); 
+            ps.setBytes(7, sucursal.getLogo());
+            ps.setInt(8, sucursal.getIdSucursal());
             rr = ps.executeUpdate();
             if(rr>0){
             JOptionPane.showMessageDialog(null, "Se actualizo con exito!");
@@ -120,19 +129,40 @@ public class CD_Sucursal {
         }  
     }
 
-   
-    public void Eliminar(EN_Sucursal sucursal) {
-      String sql = "DELETE Sucursal WHERE IdSucursal=?";
+    public void buscarLogo(int id) throws IOException {
+      String sql = "SELECT (Logo) FROM Sucursal WHERE IdSucursal=?";
         try {
             acceso = con.conectar();
-            ps = acceso.prepareStatement(sql);
+            ps = acceso.prepareStatement(sql);   
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+            byte[] logo = rs.getBytes("Logo");
+            BufferedImage bufferedImage = null;
+            InputStream inputStream = new ByteArrayInputStream(logo);
+            bufferedImage = ImageIO.read(inputStream);
+            ImageIcon imagenIcon = new ImageIcon(bufferedImage.getScaledInstance(imgLogo.getWidth(), imgLogo.getHeight(), Image.SCALE_SMOOTH));
+            imgLogo.setIcon(imagenIcon);
+            }
             
             
+                            
+        } catch (SQLException e) {
+            System.out.println("Error de conexion");
+            JOptionPane.showMessageDialog(null, "Error de conexion" + e);
+        }  
+    }
+   
+    public void Eliminar(EN_Sucursal sucursal) {
+      String sql = "DELETE FROM Sucursal WHERE IdSucursal=?";
+        try {
+            acceso = con.conectar();
+            ps = acceso.prepareStatement(sql);           
             ps.setInt(1, sucursal.getIdSucursal());
-            
             rr = ps.executeUpdate();
             if(rr>0){
-            JOptionPane.showMessageDialog(null, "Se actualizo con exito!");
+            JOptionPane.showMessageDialog(null, "Se elimino el registro");
             }
                             
         } catch (SQLException e) {

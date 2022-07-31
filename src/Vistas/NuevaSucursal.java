@@ -37,11 +37,14 @@ public class NuevaSucursal extends javax.swing.JInternalFrame {
     CF_Sucursal cfS = new CF_Sucursal();
     CD_Sucursal cdS = new CD_Sucursal();
     DefaultTableModel model = new DefaultTableModel();
+    Icon logoInicial;
     public NuevaSucursal() {
         initComponents();
+        txtId.setVisible(false);
         cdS.Listar();
         btnModificar.setVisible(false);
         btnEliminar.setVisible(false);
+        logoInicial = imgLogo.getIcon();
     }
 
     /**
@@ -55,7 +58,6 @@ public class NuevaSucursal extends javax.swing.JInternalFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaSucursal = new javax.swing.JTable();
-        txtId = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         txtRFC = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -75,6 +77,7 @@ public class NuevaSucursal extends javax.swing.JInternalFrame {
         txtTel = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtCorreo = new javax.swing.JTextField();
+        txtId = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 186));
 
@@ -86,6 +89,12 @@ public class NuevaSucursal extends javax.swing.JInternalFrame {
 
             }
         ));
+        tablaSucursal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tablaSucursal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaSucursalMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaSucursal);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -97,7 +106,7 @@ public class NuevaSucursal extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Razon Social");
 
-        imgLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Logoemail.png"))); // NOI18N
+        imgLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/LogoAnimado.png"))); // NOI18N
 
         jLabel4.setText("C. P.");
 
@@ -116,10 +125,25 @@ public class NuevaSucursal extends javax.swing.JInternalFrame {
         });
 
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         btnRefescar.setText("Refrescar");
+        btnRefescar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefescarActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Tel. Contacto");
 
@@ -134,29 +158,36 @@ public class NuevaSucursal extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(txtCP, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(158, 158, 158))
-                            .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(65, 65, 65)
-                        .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel3)
-                    .addComponent(txtDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(txtCP, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addGap(158, 158, 158))
+                                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(65, 65, 65)
+                                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel3)
+                            .addComponent(txtDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(txtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(29, 29, 29)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(txtTel, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(txtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(29, 29, 29)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(txtTel, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(txtRazonSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtRazonSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(230, 230, 230)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnLogo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(imgLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -182,13 +213,16 @@ public class NuevaSucursal extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(22, 22, 22)
-                                .addComponent(imgLogo)
+                                .addComponent(imgLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jLabel1)
-                                .addGap(0, 0, 0)
-                                .addComponent(txtRazonSocial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addGap(0, 0, 0)
+                                        .addComponent(txtRazonSocial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel2)
@@ -223,28 +257,18 @@ public class NuevaSucursal extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 886, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtId)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 886, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(txtId)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -270,8 +294,7 @@ public class NuevaSucursal extends javax.swing.JInternalFrame {
         enS.setCP(CP);
         enS.setLogo(Logo);
         cfS.Registrar(enS);
-        cdS.Listar();
-       
+        Refrescar();       
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnLogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoActionPerformed
@@ -287,6 +310,81 @@ public class NuevaSucursal extends javax.swing.JInternalFrame {
             imgLogo.setIcon(imagenIcon);
         }
     }//GEN-LAST:event_btnLogoActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        EN_Sucursal enS = new EN_Sucursal();
+        int idSucursal = Integer.parseInt(txtId.getText());
+        String RazonSocial = txtRazonSocial.getText();
+        String Tel = txtTel.getText();        
+        String Correo = txtCorreo.getText();
+        String RFC = txtRFC.getText().toUpperCase();        
+        String Domicilio = txtDomicilio.getText();
+        String CP = txtCP.getText();
+        byte[] Logo = CM_Recursos.iconByte(imgLogo);
+        
+        enS.setIdSucursal(idSucursal);
+        enS.setRazonSocial(RazonSocial);
+        enS.setTel(Tel);
+        enS.setCorreo(Correo);
+        enS.setRFC(RFC);
+        enS.setDomicilio(Domicilio);
+        enS.setCP(CP);
+        enS.setLogo(Logo);
+        cfS.Actualizar(enS);
+        Refrescar();
+    }//GEN-LAST:event_btnModificarActionPerformed
+    private void Refrescar(){
+        txtId.setText("");
+        txtRazonSocial.setText("");
+        txtTel.setText("");
+        txtCorreo.setText("");
+        txtRFC.setText("");
+        txtDomicilio.setText("");
+        txtCP.setText("");
+        imgLogo.setIcon(logoInicial);      
+        btnModificar.setVisible(false);
+        btnEliminar.setVisible(false);
+        btnRegistrar.setVisible(true);                       
+        cdS.Listar();
+    }
+    private void tablaSucursalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaSucursalMouseClicked
+        int fila = tablaSucursal.getSelectedRow();
+        txtId.setText(tablaSucursal.getValueAt(fila, 0).toString());
+        txtRazonSocial.setText(tablaSucursal.getValueAt(fila, 1).toString());
+        txtTel.setText(tablaSucursal.getValueAt(fila, 2).toString());
+        txtCorreo.setText(tablaSucursal.getValueAt(fila, 3).toString());
+        txtRFC.setText(tablaSucursal.getValueAt(fila, 4).toString());
+        txtDomicilio.setText(tablaSucursal.getValueAt(fila, 5).toString());
+        txtCP.setText(tablaSucursal.getValueAt(fila, 6).toString());
+        int id = Integer.parseInt( txtId.getText());
+        try {
+            cdS.buscarLogo(id);
+        } catch (IOException ex) {
+            Logger.getLogger(NuevaSucursal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(txtId.getText().length()!=0){
+            System.out.println(""+fila);
+            btnModificar.setVisible(true);
+            btnEliminar.setVisible(true);
+            btnRegistrar.setVisible(false);
+        }
+    }//GEN-LAST:event_tablaSucursalMouseClicked
+
+    private void btnRefescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefescarActionPerformed
+        Refrescar();
+    }//GEN-LAST:event_btnRefescarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+         if(txtId.getText().length()!=0){
+         int respuesta =  JOptionPane.showConfirmDialog(null, "Deseas eliminar");
+         if(respuesta==0){               
+                     EN_Sucursal enS = new EN_Sucursal();
+                     int idSucursal = Integer.parseInt(txtId.getText());
+                     enS.setIdSucursal(idSucursal);
+                     cdS.Eliminar(enS);
+                     Refrescar();}                  
+         }             
+    }//GEN-LAST:event_btnEliminarActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEliminar;
@@ -294,7 +392,7 @@ public class NuevaSucursal extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnRefescar;
     private javax.swing.JButton btnRegistrar;
-    private javax.swing.JLabel imgLogo;
+    public static javax.swing.JLabel imgLogo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
